@@ -63,3 +63,20 @@ void free2Dspace(double** matrix)
   return;
 }
 #endif
+
+#ifndef MAKE1DSPACE_H
+#define MAKE1DSPACE_H
+double* make1Dspace(int n)
+{
+  double * vector;
+  // Laver plads til n doubles
+  vector = (double *)malloc(n*sizeof(double));
+  // Hvis der er allokeringsfejl
+  if(vector == NULL)
+  {
+    return NULL;
+  }
+  return vector;
+}
+
+#endif
