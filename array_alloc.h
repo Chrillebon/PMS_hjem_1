@@ -11,7 +11,7 @@ double** make2Dspace(int m, int n)
   // Laver plads til "m" lister (pointers) af type double
   matrix = (double **)malloc(m*sizeof(double*));
   // Hvis der er allokeringsfejl
-  if(res == NULL)
+  if(matrix == NULL)
   {
     return NULL;
   }
@@ -23,7 +23,7 @@ double** make2Dspace(int m, int n)
   // igen, hvis der er problemer med allokering
   if(matrix[0] == NULL)
   {
-    free(res);
+    free(matrix);
     return NULL;
   }
   // Her laver vi alle de smarte hop som gør
@@ -41,7 +41,7 @@ double** make2Dspace(int m, int n)
     matrix[i] = matrix[0] + i*n;
   }
 
-  return res;
+  return matrix;
 }
 #endif
 
@@ -55,9 +55,11 @@ void free2Dspace(double** matrix)
   // Starter med at fjerne alle m*n værdier
   // som er "gemt på matrix[0]"
   free(matrix[0]);
+  matrix[0] = NULL;
   // Fjerner vores hop til forskellige steder
   // i vores m*n matrix
   free(matrix);
+  matrix = NULL;
   return;
 }
 #endif
