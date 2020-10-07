@@ -10,6 +10,8 @@ OBJECTS=
 TARGET=
 .PHONY: all
 
-all: testing
+all: clean testing
 
+clean:
+	rm -f testing *.o
 testing:

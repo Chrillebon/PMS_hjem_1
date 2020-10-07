@@ -6,6 +6,7 @@
 int main()
 {
   int n;
+  double alpha;
   double **A;
   double *b, *x;
   // creating array testing:
@@ -20,6 +21,8 @@ int main()
     {
       break;
     }
+    fscanf(test, "%lf", &alpha);
+
     A = make2Dspace(n,n);
     b = make1Dspace(n);
     x = make1Dspace(n);
@@ -37,6 +40,18 @@ int main()
     }
     
     // HER SKAL VI INDSÆTTE "fwdsub()", SÅ VI OPDATERER B
+    fwdsub(n, alpha, A, b);
+    if (eqtest(b, x, n, 1e-10))
+    {
+      printf("Succes!\n");
+    } else
+    {
+      printf("Error go home fool!\n");
+    }
+    
+    
+    
+
     // HER SKAL VI INDSÆTTE "equal()", SÅ VI TJEKKER AT VI HAR KORREKT SVAR
     // PRINTER STATUS PÅ FUNKTIONEN:
 
