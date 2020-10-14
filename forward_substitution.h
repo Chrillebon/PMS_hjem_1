@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-double dot(double * row, double ** matrix, int k) {
+double sumcalc(double * row, double ** matrix, int k) {
     // dot product with column k in matrix and vector
     double total = 0;
 
@@ -34,7 +34,7 @@ int fwdsub(
       {
         return -1;
       }
-      b[i] = (b[i] - dot(b, R, i)) / denom;
+      b[i] = (b[i] - sumcalc(b, R, i)) / denom;
     }
     return 0;
   }
