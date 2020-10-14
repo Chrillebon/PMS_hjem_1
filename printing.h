@@ -2,9 +2,9 @@
 #define MATRIXPRINT_H
 void matrixprint(int n, double** matrix)
 {
-  for(int i=0;i<n;i++)
+  for(int i=0; i<n; i++)
   {
-    for(int o=0;o<n;o++)
+    for(int o=0; o<n; o++)
     {
       printf("%lf ", matrix[i][o]);
     }
@@ -19,7 +19,7 @@ void matrixprint(int n, double** matrix)
 #define VECTORPRINT_H
 void vectorprint(int n, double* vector)
 {
-  for(int i=0;i<n;i++)
+  for(int i=0; i<n; i++)
   {
     printf("%lf ", vector[i]);
   }
