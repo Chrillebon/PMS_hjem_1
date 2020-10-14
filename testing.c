@@ -1,10 +1,30 @@
 #include "forward_substitution.h"
 #include "array_alloc.h"
-#include "printing.h"
+#include "printing_reading.h"
+#include <stdlib.h>
+
+int eqtest(double * a, double * b, unsigned int n, double epsilon) {
+  double diff;
+  for (size_t i = 0; i < n; i++)
+  {
+    diff = a[i] - b[i];
+    // absolute value
+    if(diff < 0)
+    {
+      diff = diff * (-1);
+    }
+    if(diff > epsilon)
+    {
+      return 0;
+    }
+  }
+  return 1;
+}
 
 
 int main()
 {
+  int returnval;
   int n;
   double alpha;
   double **A;
@@ -26,31 +46,30 @@ int main()
     A = make2Dspace(n,n);
     b = make1Dspace(n);
     x = make1Dspace(n);
-    for(int i=0;i<n;i++)
-    {
-      for(int o=0;o<n;o++)
-      {
-        fscanf(test, "%lf", &A[i][o]);
-      }
-    }
-    for(int i=0;i<n;i++)
-    {
-      fscanf(test, "%lf", &b[i]);
-      fscanf(svar, "%lf", &x[i]);
-    }
-    
+
+    matrixread(test, A, n);
+
+    vectorread(test, b, n);
+    vectorread(svar, x, n);
+
     // HER SKAL VI INDSÆTTE "fwdsub()", SÅ VI OPDATERER B
-    fwdsub(n, alpha, A, b);
-    if (eqtest(b, x, n, 1e-10))
+    returnval = fwdsub(n, alpha, A, b);
+
+    if(returnval == -1)
+    {
+      printf("we have had a problem!!!\n");
+    }
+
+
+    if(eqtest(b, x, n, 1e-10))
     {
       printf("Succes!\n");
-    } else
+    }
+    else
     {
       printf("Error go home fool!\n");
     }
-    
-    
-    
+
 
     // HER SKAL VI INDSÆTTE "equal()", SÅ VI TJEKKER AT VI HAR KORREKT SVAR
     // PRINTER STATUS PÅ FUNKTIONEN:
@@ -65,6 +84,13 @@ int main()
     b = NULL;
     free(x);
     x == NULL;
+  }
+
+  // tester hvis man sender nullpointers ind:
+  returnval = fwdsub(2, -1, NULL, NULL);
+  if(returnval == -1)
+  {
+    printf("good return brah\n");
   }
 
   fclose(test);

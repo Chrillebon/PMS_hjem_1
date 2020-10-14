@@ -6,7 +6,7 @@
 
 double dot(double * row1, double * row2, unsigned int k) {
 
-    double total;
+    double total = 0;
 
     for (size_t i = 0; i < k; i++)
     {

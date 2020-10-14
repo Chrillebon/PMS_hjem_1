@@ -27,3 +27,34 @@ void vectorprint(int n, double* vector)
   return;
 }
 #endif
+
+
+#ifndef MATRIXREAD_H
+#define MATRIXREAD_H
+
+void matrixread(FILE * source, double ** A, int n)
+{
+  for(int i=0;i<n;i++)
+  {
+    for(int o=0;o<n;o++)
+    {
+      fscanf(source, "%lf", &A[i][o]);
+    }
+  }
+  return;
+}
+#endif
+
+
+#ifndef VECTORREAD_H
+#define VECTORREAD_H
+
+void vectorread(FILE * source, double * v, int n)
+{
+  for(int i=0;i<n;i++)
+  {
+    fscanf(source, "%lf", &v[i]);
+  }
+  return;
+}
+#endif
