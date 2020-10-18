@@ -3,11 +3,14 @@
 
 double sumcalc(double * row, double ** matrix, int k) {
     // dot product with column k in matrix and vector
-    double total = 0;
+    double total = 0.0, c = 0.0, t, y;
 
     for (int i = 0; i < k; i++)
     {
-        total += row[i] * matrix[i][k];
+      y = row[i] * matrix[i][k] - c;
+      t = total + y;
+      c = (t - total) - y;
+      total = t;
     }
     return total;
 }
